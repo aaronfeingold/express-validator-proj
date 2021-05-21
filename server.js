@@ -1,17 +1,42 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
-const db = require('./config/db.js')
-const app = express();
-const port = 8000;
+const cors = require("cors");
 
+const app = express();
+
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+
+
+app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-MongoClient.connect(db.url, (err, database) => {
-  if (err) return console.log(err);
-  const db = database.db("note-api")
-  require('./app/routes')(app, db);
-  app.listen(port, () => { console.log('We are live on ' + port);  }); 
-})
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
+});
+require('./app/routes/post.routes')(app)
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
+
+const db = require('./app/models');
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true  
+  })
+  .then(()=>{
+    console.log("Connected to the database!")
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit()
+  })
 
 
