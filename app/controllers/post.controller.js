@@ -1,6 +1,6 @@
+const { validationResult } = require('express-validator')
 const db = require('../models');
 const Post = db.posts
-
 
 exports.findAll = (req, res) => {
   const title = req.query.title;
@@ -20,28 +20,26 @@ exports.findAll = (req, res) => {
 
 // Create and Save a new Post
 exports.create = (req, res) => {
-  debugger;
-  console.log(req)
-  if (!req.body.title){
-    res.status(400).send ({message: "Content cannot be empty" })
-    return;
-  }
-  const post = new Post({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
-  });
-  post
-    .save(post)
-    .then(data => {
-      res.send(data)
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occured"
+  const errors = validationResult(req)
+  if (!errors.isEmpty()){
+    return res.send(errors)
+  } else {
+    const post = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      published: req.body.published ? req.body.published : false
+    });
+    post
+      .save(post)
+      .then(data => {
+        let num = data.title
+        let math = num * 2
+        res.send({title: math})
       })
-    })
+      .catch(err => {
+        res.status(500).send({errors: err})
+      })
+  }
 };
 
 

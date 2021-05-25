@@ -1,11 +1,11 @@
-const { body, valdiationResult } = require('express-validator')
+const { check, oneOf } = require('express-validator')
 
 module.exports = app => { 
 	const posts = require('../controllers/post.controller.js')
 
 	var router = require('express').Router()
 
-	router.post('/', posts.create);
+	router.post('/', oneOf([check('title').isInt().withMessage('Must be an integer number')]), posts.create);
 
 	router.get('/', posts.findAll);
 
