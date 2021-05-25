@@ -16,7 +16,10 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-const db = require('./app/models');
+// configure the postgres db
+const dbConfig = require('../config/db.config.js')
+const db = dbConfig.db;
+
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
