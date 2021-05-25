@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "npm start"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,8 @@
     "express-validator": "^6.11.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.10",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "pg-promise": "^10.10.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
