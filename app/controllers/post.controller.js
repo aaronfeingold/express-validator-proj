@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator')
-const db = require('../models');
-const Post = db.posts
+const db = require('../models/index');
+const Post = db.post
 
 exports.findAll = (req, res) => {
   const title = req.query.title;

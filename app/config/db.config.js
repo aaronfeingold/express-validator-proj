@@ -1,7 +1,10 @@
 require('dotenv').config()
-var pgp = require('pg-promise')
-var pgdb = pgp(process.env.DATABASE_URL)
 
-module.exports = {
-  db: pgdb 
-};
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+const db = {}
+db.mongoose = mongoose
+db.url = process.env.DB_HOST
+
+module.exports = db
