@@ -21,13 +21,12 @@ exports.findAll = (req, res) => {
 // Create and Save a new Post
 exports.create = (req, res) => {
   const errors = validationResult(req)
+  
   if (!errors.isEmpty()){
     return res.send(errors)
   } else {
     const post = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      title: req.body.title
     });
     post
       .save(post)
