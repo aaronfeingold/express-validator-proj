@@ -33,7 +33,8 @@ exports.create = (req, res) => {
       .then(data => {
         let num = data.title
         let math = num * 2
-        res.send({title: math})
+        let id = data.id
+        res.send({title: math, id: id})
       })
       .catch(err => {
         res.status(500).send({errors: err})
