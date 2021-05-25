@@ -1,8 +1,9 @@
 const dbConfig = require('../config/db.config.js');
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+
 var pgp = require('pg-promise')
+var db = pgp('postgres://username:password@host:port/database')
+
 const db = {}
 db.mongoose = mongoose
 db.url = dbConfig.url;
