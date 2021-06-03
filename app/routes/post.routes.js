@@ -5,10 +5,8 @@ module.exports = app => {
 	var router = require('express').Router()
 
 	router.post('/', pv.validatePost, posts.create);
-
-	router.get('/', posts.findAll);
-
-	router.get('/:id', posts.findOne)
+	
+	router.get('/', posts.get);
 
 	app.use('/api/posts', router)
 };
