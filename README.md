@@ -1,28 +1,28 @@
-## Node.js server Example with express-validator middleware
+## Express.js server Example with express-validator middleware
 
-This project utilizes the macros of mongoose (for db client connection) and express-validator to process requests from a React.js frontend.
+This project utilizes express-validator to do work on requests from a React.js frontend.
 
 To get started, fork and clone the repository.
  
 Next, use npm install to download dependencies.
 
-Importantly, make sure to create a .env file in the projecet root directory to load in your secret MongoDB url.
-
 Run npm start to view server in browser at port 8080 (details below)
 
-Development: cors is added to received req from react server here:
+Need to test with frontend? 
+
+Check out this react project here:
 
 https://github.com/aaronfeingold/react-redux-toolkit-client
 
 Deployed site visible here:
 
-SOME WEBSITE COMMING SOON
+https://express-validator-proj.herokuapp.com/api/posts
 
 ## Available Scripts
 
-On a mac, open a common terminal (spotlight can assist in finding that)
+On a mac, open a new shell.
 
-CD into the project directory, and then after installing dependancies (see above), you can run the server with:
+cd into the project's root directory, and then after installing dependencies (see above), you can run the server with:
 
 ### `npm start`
 
